@@ -50,6 +50,16 @@ def linkConvert(music_name):
     return print( store )
 
 
+def Remove_Empty_Lines(filename):
+    with open(filename, 'r+') as file:
+        lines = file.readlines()
+        file.seek(0)
+        file.writelines(line for line in lines if line.strip())  # for each line if
+        file.truncate()
+
+Remove_Empty_Lines("D:\Tranferencias\musicas.txt
+
+
 file = open( "C:\Files\*filename.txt", "r")
 for line in file:  # for each line on the file pass the line into the function
     linkConvert( line )

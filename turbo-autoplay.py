@@ -11,7 +11,7 @@ import os
 port=21
 password='ftp_login_password'
 
-os.chdir("C:\Files") #dirSave (where the file is stored
+os.chdir("C:/Files") #dirSave (where the file is stored
 ftp = FTP("111.111.1.1")  #ip for python ot connect
 ftp.login('username_ftp',password)
 print ("File List:")

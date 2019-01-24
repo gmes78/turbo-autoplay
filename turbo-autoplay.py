@@ -24,10 +24,9 @@ filematch = '*filename.txt*'  # file name
 ftp.cwd(directory)
 
 for filename in ftp.nlst(filematch):  # Loop - looking for matching files
-    fhandle = open(filename, 'wb')
-    print('Getting ' + filename)  # for confort sake, shows the file that's being retrieved
-    ftp.retrbinary('RETR ' + filename, fhandle.write)
-    fhandle.close()
+    with open(filename, 'wb') as fhandle:
+        print('Getting ' + filename)  # for confort sake, shows the file that's being retrieved
+        ftp.retrbinary('RETR ' + filename, fhandle.write)
 
 ftp.delete("/files/filename.txt")
 
@@ -58,9 +57,9 @@ def Remove_Empty_Lines(filename):
 
 Remove_Empty_Lines("C:/Files/filename.txt")
 
-file = open("C:/Files/filename.txt", "r", encoding="UTF-8")
-for line in file:  # for each line on the file pass the line into the function
-    linkConvert(line)
+with open("C:/Files/filename.txt", "r", encoding="UTF-8") as file:
+    for line in file:  # for each line on the file pass the line into the function
+        linkConvert(line)
 
 # Subloop
 run_once = 0

@@ -57,16 +57,14 @@ def Remove_Empty_Lines(filename):
         file.writelines(line for line in lines if line.strip())  # for each line if
         file.truncate()
 
-Remove_Empty_Lines("D:\Tranferencias\musicas.txt)
+Remove_Empty_Lines("C:\Files\filename.txt)
 
 
-file = open( "C:\Files\*filename.txt", "r", encoding="UTF-8")
+file = open( "C:\Files\filename.txt", "r", encoding="UTF-8")
 for line in file:  # for each line on the file pass the line into the function
     linkConvert( line )
 
-
-
-#This could be a list or a dic but I made this way to be sure ... probably I'm gona change it
+#Subloop
 run_once = 0
 run_once1 = 0
 run_once2 = 0
@@ -86,7 +84,7 @@ time.sleep(3)
 
 
 while True:  #make a eternal loop
- if datetime.datetime.now() < future:  #This is a precaution to make sure the loop only starts at the correct time (like a safety net)
+ if datetime.datetime.now() < future:
   for music in store:  #loop for each music in the list
    if datetime.datetime.now() < future:  # if the time at the start of the loop is less than the future the music is gona start
        video = pafy.new( music )
@@ -121,7 +119,7 @@ while True:  #make a eternal loop
        future3 = datetime.datetime.now() + datetime.timedelta(seconds=3605)  #defines the second future (delta time of the delay[this is the lenght of the interval - 10min but needs to be added the class duration. 10min in seconds + 50min in seconds + 5s of delay)
        print("This is the datetime of the future3: ",datetime.datetime.now())  #checkpoint (tbd)
        print("This is future3: ",future3)  #checkpoint (tbd)
-   elif datetime.datetime.now() < future3: # if the time atm is less than the future true green light to start the next condition
+   elif datetime.datetime.now() < future3: 
        time.sleep( 5 )
        print( "This is future3: ",future3 )  #checkpoint (tbd)
        pause = datetime.datetime.now() + datetime.timedelta( seconds=3000 ) #break
@@ -142,7 +140,7 @@ while True:  #make a eternal loop
        future4 = datetime.datetime.now() + datetime.timedelta(seconds=3305)  #defines the second future (delta time of the delay[this is the lenght of the interval - 10min but needs to be added the class duration. 10min in seconds + 50min in seconds + 5s of delay) ex. 3605
        print("This is datetime of future4: ",future4)  #checkpoint (tbd)
        print("This is future4: ",future4)  #checkpoint (tbd)
-   elif datetime.datetime.now() >= future and datetime.datetime.now() >= future2 and datetime.datetime.now() >= future3 and datetime.time.now() < future4: # if the time atm is less than the future true green light to start the next condition (this gets a somewhat useless check of the last futures. Using as a precaution [to be deleted in the final version])
+   elif datetime.time.now() < future4:
        time.sleep( 5 )
        print( "This is future4: ", future4 )  #checkpoint (tbd)
        pause = datetime.datetime.now() + datetime.timedelta( seconds=3000 ) #break
@@ -163,7 +161,7 @@ while True:  #make a eternal loop
        future5 = datetime.datetime.now() + datetime.timedelta( seconds= 3605 )  #defines the second future (delta time of the delay[this is the lenght of the interval - 10min but needs to be added the class duration. 10min in seconds + 50min in seconds + 5s of delay)
        print( "This is datetime of future5: ", future5 )  #checkpoint (tbd)
        print( "This is future5: ", future5 )  #checkpoint (tbd)
-   elif datetime.datetime.now() >= future and datetime.datetime.now() >= future2 and datetime.datetime.now() >= future3 and datetime.time.now() >= future4 and datetime.datetime.now() < future5: # if the time atm is less than the future true green light to start the next condition (this gets a somewhat useless check of the last futures. Using as a precaution [to be deleted in the final version])
+   elif datetime.datetime.now() < future5:
        time.sleep( 5 )
        print( "This is future5: ", future5 )  #checkpoint (tbd)
        pause = datetime.datetime.now() + datetime.timedelta( seconds=3000 ) #break
@@ -184,7 +182,7 @@ while True:  #make a eternal loop
        future6 = datetime.datetime.now() + datetime.timedelta( seconds=3605 )  #defines the second future (delta time of the delay[this is the lenght of the interval - 10min but needs to be added the class duration. 10min in seconds + 50min in seconds + 5s of delay)
        print( "This is datetime of future6: ", future6 )  #checkpoint (tbd)
        print( "This is future6: ", future6 )  #checkpoint (tbd)
-   elif datetime.datetime.now() >= future and datetime.datetime.now() >= future2 and datetime.datetime.now() >= future3 and datetime.time.now() >= future4 and datetime.datetime.now() >= future5 and datetime.datetime.now() < future6: # if the time atm is less than the future true green light to start the next condition (this gets a somewhat useless check of the last futures. Using as a precaution [to be deleted in the final version])
+   elif datetime.datetime.now() < future6: # if the time atm is less than the future true green light to start the next condition (this gets a somewhat useless check of the last futures. Using as a precaution [to be deleted in the final version])
        time.sleep( 5 )
        print( "This is future6: ", future6 )  #checkpoint (tbd)
        pause = datetime.datetime.now() + datetime.timedelta( seconds=3000 ) #break
@@ -205,7 +203,7 @@ while True:  #make a eternal loop
        future7 = datetime.datetime.now() + datetime.timedelta( seconds=3605 )  #defines the second future (delta time of the delay[this is the lenght of the break - 10min but needs to be added the class duration. 10min in seconds + 50min in seconds + 5s of delay)
        print( "This is datetime of future7: ", future7 )  #checkpoint (tbd)
        print( "This is future7: ", future7 )  #checkpoint (tbd)
-   elif datetime.datetime.now() >= future and datetime.datetime.now() >= future2 and datetime.datetime.now() >= future3 and datetime.time.now() >= future4 and datetime.datetime.now() >= future5 and datetime.datetime.now() >= future6 and datetime.datetime.now() < future7:# if the time atm is less than the future true green light to start the next condition (this gets a somewhat useless check of the last futures. Using as a precaution [to be deleted in the final version])
+   elif datetime.datetime.now() < future7:
        time.sleep( 5 )
        print( "This is future7: ", future7 )  #checkpoint (tbd)
        pause = datetime.datetime.now() + datetime.timedelta( seconds=3000 ) #break
@@ -226,7 +224,7 @@ while True:  #make a eternal loop
        future8 = datetime.datetime.now() + datetime.timedelta( seconds=3605 )  #defines the second future (delta time of the delay[this is the lenght of the break - 10min but needs to be added the class duration. 10min in seconds + 50min in seconds + 5s of delay)
        print( "This is datetime of future8: ", future8 )  #checkpoint (tbd)
        print( "This is future8: ", future8 )  #checkpoint (tbd)
-   elif datetime.datetime.now() >= future and datetime.datetime.now() >= future2 and datetime.datetime.now() >= future3 and datetime.time.now() >= future4 and datetime.datetime.now() >= future5 and datetime.datetime.now() >= future6 and datetime.datetime.now() >= future7 and datetime.datetime.now() < future8:# if the time atm is less than the future true green light to start the next condition (this gets a somewhat useless check of the last futures. Using as a precaution [to be deleted in the final version])
+   elif datetime.datetime.now() < future8:
        time.sleep( 5 )
        print( "This is future8: ", future8 )   #checkpoint (tbd)
        pause = datetime.datetime.now() + datetime.timedelta( seconds=3000 ) #break
@@ -247,8 +245,7 @@ while True:  #make a eternal loop
        future9 = datetime.datetime.now() + datetime.timedelta( seconds=3305 )  #defines the second future (delta time of the delay[this is the lenght of the break - 10min but needs to be added the class duration. 10min in seconds + 50min in seconds + 5s of delay)
        print( "This is datetime of future9: ", future9 )  #checkpoint (tbd)
        print( "This is future9: ", future9 )  #checkpoint (tbd)
-   elif datetime.datetime.now() >= future and datetime.datetime.now() >= future2 and datetime.datetime.now() >= future3 and datetime.time.now() >= future4 and datetime.datetime.now() >= future5 and datetime.datetime.now() >= future6 and datetime.datetime.now() >= future7 and datetime.datetime.now() >= future8 and datetime.datetime.now() < future9:  # if the time atm is less than the future true green light to start the next condition (this gets a somewhat useless check of the last futures. Using as a precaution [to be deleted in the final version])
-       time.sleep( 5 )
+   elif datetime.datetime.now() < future9: 
        print( "This is future9: ", future9 )  # checkpoint (tbd)
        pause = datetime.datetime.now() + datetime.timedelta( seconds=3000 )
        if run_once7 == 0:

@@ -57,10 +57,10 @@ def Remove_Empty_Lines(filename):
         file.writelines(line for line in lines if line.strip())  # for each line if
         file.truncate()
 
-Remove_Empty_Lines("C:\Files\filename.txt)
+Remove_Empty_Lines("C:/Files/filename.txt")
 
 
-file = open( "C:\Files\filename.txt", "r", encoding="UTF-8")
+file = open( "C:/Files/filename.txt", "r", encoding="UTF-8")
 for line in file:  # for each line on the file pass the line into the function
     linkConvert( line )
 
@@ -119,7 +119,7 @@ while True:  #make a eternal loop
        future3 = datetime.datetime.now() + datetime.timedelta(seconds=3605)  #defines the second future (delta time of the delay[this is the lenght of the interval - 10min but needs to be added the class duration. 10min in seconds + 50min in seconds + 5s of delay)
        print("This is the datetime of the future3: ",datetime.datetime.now())  #checkpoint (tbd)
        print("This is future3: ",future3)  #checkpoint (tbd)
-   elif datetime.datetime.now() < future3: 
+   elif datetime.datetime.now() < future3:
        time.sleep( 5 )
        print( "This is future3: ",future3 )  #checkpoint (tbd)
        pause = datetime.datetime.now() + datetime.timedelta( seconds=3000 ) #break
@@ -245,7 +245,7 @@ while True:  #make a eternal loop
        future9 = datetime.datetime.now() + datetime.timedelta( seconds=3305 )  #defines the second future (delta time of the delay[this is the lenght of the break - 10min but needs to be added the class duration. 10min in seconds + 50min in seconds + 5s of delay)
        print( "This is datetime of future9: ", future9 )  #checkpoint (tbd)
        print( "This is future9: ", future9 )  #checkpoint (tbd)
-   elif datetime.datetime.now() < future9: 
+   elif datetime.datetime.now() < future9:
        print( "This is future9: ", future9 )  # checkpoint (tbd)
        pause = datetime.datetime.now() + datetime.timedelta( seconds=3000 )
        if run_once7 == 0:

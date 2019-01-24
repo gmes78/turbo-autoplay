@@ -1,7 +1,6 @@
 import urllib.request
 import urllib.parse
 import re
-import webbrowser
 import pafy  # video api
 import datetime, time
 from subprocess import Popen

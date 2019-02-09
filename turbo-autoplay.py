@@ -3,10 +3,13 @@ import asyncio
 import logging
 import pathlib
 
+from controller import AutoplayController
 from library import MusicLibrary
 
 log_format = '[{asctime}] {levelname} {name}: {message}'
 logger = logging.getLogger(__name__)
+
+SLEEP_DELAY = 10
 
 
 class Settings:
@@ -62,8 +65,27 @@ def load_library(library_file: pathlib.Path):
         return MusicLibrary()
 
 
-async def main_loop(settings: Settings):
-    pass
+def get_autoplay_controller(conditions_file: pathlib.Path):
+    if conditions_file.is_file():
+        logger.info('Found autoplay conditions file, loading')
+        try:
+            with conditions_file.open('r', encoding='utf-8') as file:
+                return AutoplayController.from_json(file.read())
+        except Exception as e:
+            logger.critical('Failed to load autoplay conditions from file: {}',
+                            e)
+            raise e
+    else:
+        logger.warning('Autoplay conditions file not found, always playing')
+        return AutoplayController()
+
+
+async def main_loop(settings: Settings, controller: AutoplayController):
+    while True:
+        if controller.should_play():
+            raise NotImplementedError
+        else:
+            await asyncio.sleep(SLEEP_DELAY)
 
 
 def main(settings: Settings):
@@ -80,8 +102,12 @@ def main(settings: Settings):
 
     logger.info('Library loaded successfully')
 
+    conditions_file = settings.library_path.joinpath(
+        'autoplay_conditions.json')
+    controller = get_autoplay_controller(conditions_file)
+
     logger.info('Starting main loop')
-    asyncio.run(main_loop(settings))
+    asyncio.run(main_loop(settings, controller))
 
 
 if __name__ == '__main__':

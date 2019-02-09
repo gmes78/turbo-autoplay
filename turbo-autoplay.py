@@ -4,7 +4,7 @@ import pathlib
 
 from library import MusicLibrary
 
-log_format = '[%(asctime)s] %(levelname)s %(name)s: %(message)s'
+log_format = '[{asctime}] {levelname} {name}: {message}'
 logger = logging.getLogger(__name__)
 
 
@@ -43,7 +43,8 @@ def parse_arguments():
 
 
 def setup_logging(log_file: pathlib.Path, log_level):
-    logging.basicConfig(filename=log_file, format=log_format, level=log_level)
+    logging.basicConfig(filename=log_file, format=log_format, level=log_level,
+                        style='{')
 
 
 def load_library(library_file: pathlib.Path):

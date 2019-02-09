@@ -1,4 +1,5 @@
 import argparse
+import asyncio
 import logging
 import pathlib
 
@@ -61,6 +62,10 @@ def load_library(library_file: pathlib.Path):
         return MusicLibrary()
 
 
+async def main_loop(settings: Settings):
+    pass
+
+
 def main(settings: Settings):
     if not settings.library_path.is_dir():
         settings.library_path.mkdir(parents=True)
@@ -74,6 +79,9 @@ def main(settings: Settings):
     library = load_library(library_file)
 
     logger.info('Library loaded successfully')
+
+    logger.info('Starting main loop')
+    asyncio.run(main_loop(settings))
 
 
 if __name__ == '__main__':

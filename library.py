@@ -22,10 +22,8 @@ class MusicLibrary:
                 return music
 
     def get_random(self):
-        random.choice(self.musics)
+        return random.choice(self.musics)
 
     def get_random_with_max_len(self, max_length: int):
         eligible_musics = [m for m in self.musics if m.length <= max_length]
-        random.choice(eligible_musics)
-
-
+        return random.choice(eligible_musics)

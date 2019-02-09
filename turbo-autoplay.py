@@ -2,6 +2,8 @@ import argparse
 import logging
 import pathlib
 
+from library import MusicLibrary
+
 log_format = '[%(asctime)s] %(levelname)s %(name)s: %(message)s'
 logger = logging.getLogger(__name__)
 
@@ -44,6 +46,20 @@ def setup_logging(log_file: pathlib.Path, log_level):
     logging.basicConfig(filename=log_file, format=log_format, level=log_level)
 
 
+def load_library(library_file: pathlib.Path):
+    if library_file.is_file():
+        logger.info('Found library file, loading')
+        try:
+            with library_file.open('r', encoding='utf-8') as file:
+                return MusicLibrary.from_json(file.read())
+        except Exception as e:
+            logger.critical('Failed to import library from file:', e)
+            raise e
+    else:
+        logger.warning('Library file not found, using empty library')
+        return MusicLibrary()
+
+
 def main(settings: Settings):
     if not settings.library_path.is_dir():
         settings.library_path.mkdir(parents=True)
@@ -52,6 +68,11 @@ def main(settings: Settings):
     setup_logging(log_file, settings.log_level)
 
     logger.info('Starting')
+
+    library_file = settings.library_path.joinpath('library.json')
+    library = load_library(library_file)
+
+    logger.info('Library loaded successfully')
 
 
 if __name__ == '__main__':

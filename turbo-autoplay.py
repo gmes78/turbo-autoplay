@@ -106,6 +106,8 @@ def main(settings: Settings):
         'autoplay_conditions.json')
     controller = get_autoplay_controller(conditions_file)
 
+    logger.info('Autoplay conditions loaded successfully')
+
     logger.info('Starting main loop')
     asyncio.run(main_loop(settings, controller))
 

@@ -48,7 +48,7 @@ class AutoplayController:
         if end is None:
             return 0
 
-        return end - time
+        return datetime.datetime.combine(datetime.date.today(), end) - now
 
     @staticmethod
     def from_json(json_data):

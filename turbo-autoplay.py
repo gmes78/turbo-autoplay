@@ -58,7 +58,7 @@ def load_library(library_file: pathlib.Path):
             with library_file.open('r', encoding='utf-8') as file:
                 return MusicLibrary.from_json(file.read())
         except Exception as e:
-            logger.critical('Failed to import library from file: {}', e)
+            logger.critical(f'Failed to import library from file: {e}')
             raise e
     else:
         logger.warning('Library file not found, using empty library')
@@ -72,8 +72,8 @@ def get_autoplay_controller(conditions_file: pathlib.Path):
             with conditions_file.open('r', encoding='utf-8') as file:
                 return AutoplayController.from_json(file.read())
         except Exception as e:
-            logger.critical('Failed to load autoplay conditions from file: {}',
-                            e)
+            logger.critical(
+                f'Failed to load autoplay conditions from file: {e}')
             raise e
     else:
         logger.warning('Autoplay conditions file not found, always playing')

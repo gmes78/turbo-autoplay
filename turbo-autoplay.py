@@ -5,6 +5,7 @@ import pathlib
 
 from controller import AutoplayController
 from library import MusicLibrary
+from player import Player
 
 log_format = '[{asctime}] {levelname} {name}: {message}'
 logger = logging.getLogger(__name__)
@@ -80,10 +81,27 @@ def get_autoplay_controller(conditions_file: pathlib.Path):
         return AutoplayController()
 
 
-async def main_loop(settings: Settings, controller: AutoplayController):
+def get_player():
+    try:
+        return Player()
+    except Exception as e:
+        logger.critical(f'Failed to get Player: {e}')
+        raise e
+
+
+async def main_loop(settings: Settings, library: MusicLibrary,
+                    controller: AutoplayController, player: Player):
     while True:
         if controller.should_play():
-            raise NotImplementedError
+            music = library.get_random_with_max_len(
+                controller.time_left().total_seconds())
+            if music is not None:
+                logger.info(
+                    f'Playing {music.title} [{music.id}] ({music.length})')
+                await player.play(
+                    str(settings.library_path.joinpath(music.file_name)))
+            else:
+                await asyncio.sleep(SLEEP_DELAY)
         else:
             await asyncio.sleep(SLEEP_DELAY)
 
@@ -108,8 +126,12 @@ def main(settings: Settings):
 
     logger.info('Autoplay conditions loaded successfully')
 
+    player = get_player()
+
+    logger.info('VLC was initialized successfully')
+
     logger.info('Starting main loop')
-    asyncio.run(main_loop(settings, controller))
+    asyncio.run(main_loop(settings, library, controller, player))
 
 
 if __name__ == '__main__':

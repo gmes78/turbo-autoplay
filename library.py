@@ -1,6 +1,8 @@
 import json
 import random
 
+import aiofiles
+
 
 class MusicInfo:
     def __init__(self, video_id: str, title: str, length: int, file_name: str):
@@ -40,6 +42,11 @@ class MusicLibrary:
             return MusicInfoEncoder(indent=4).encode(self.musics)
         else:
             return MusicInfoEncoder().encode(self.musics)
+
+    async def write_to_file(self, path):
+        json_data = self.into_json()
+        async with aiofiles.open(path, 'w') as file:
+            await file.write(json_data)
 
     @staticmethod
     def from_json(json_data):
